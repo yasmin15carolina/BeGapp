@@ -1,0 +1,1973 @@
+@startuml
+set namespaceSeparator ::
+
+class "teoria_dos_jogos::AppLanguage.dart::AppLanguage" {
+  -Locale _appLocale
+  +Locale appLocal
+  +dynamic fetchLocale()
+  +void changeLanguage()
+}
+
+"teoria_dos_jogos::AppLanguage.dart::AppLanguage" o-- "dart::ui::Locale"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "teoria_dos_jogos::AppLanguage.dart::AppLanguage"
+
+class "teoria_dos_jogos::app_localizations.dart::AppLocalizations" {
+  +Locale locale
+  {static} +LocalizationsDelegate<AppLocalizations> delegate
+  -Map _localizedStrings
+  {static} +AppLocalizations of()
+  +Future load()
+  +dynamic translate()
+}
+
+"teoria_dos_jogos::app_localizations.dart::AppLocalizations" o-- "dart::ui::Locale"
+"teoria_dos_jogos::app_localizations.dart::AppLocalizations" o-- "flutter::src::widgets::localizations.dart::LocalizationsDelegate<AppLocalizations>"
+
+class "teoria_dos_jogos::app_localizations.dart::_AppLocalizationsDelegate" {
+  +bool isSupported()
+  +Future load()
+  +bool shouldReload()
+}
+
+"flutter::src::widgets::localizations.dart::LocalizationsDelegate<T>" <|-- "teoria_dos_jogos::app_localizations.dart::_AppLocalizationsDelegate"
+
+class "teoria_dos_jogos::classes::connection.dart::Connection" {
+  {static} +dynamic checkConnection()
+  {static} +dynamic loading()
+  {static} +dynamic loadingConnection()
+  {static} +dynamic noConnection()
+  {static} +Future showLoadingDialog()
+}
+
+class "teoria_dos_jogos::classes::Database.dart::Database" {
+  {static} +dynamic validateKey()
+  {static} +dynamic select()
+  {static} +dynamic insert()
+  +dynamic getData()
+  {static} +dynamic insertUser()
+  {static} +dynamic insertRounds()
+  {static} +dynamic getDilemmaVariables()
+  {static} +dynamic getMaxLength()
+}
+
+class "teoria_dos_jogos::classes::excel.dart::Excelfile" {
+  +Excel excel
+  +dynamic context
+  +dynamic createSheetPrisonerDilemma()
+  +dynamic createSheetPublicGoods()
+  +dynamic saveExcel()
+}
+
+"teoria_dos_jogos::classes::excel.dart::Excelfile" o-- "excel::excel.dart::Excel"
+
+class "teoria_dos_jogos::classes::maxLength.dart::MaxLength" {
+  +int character_maximum_length
+  +Map toJson()
+  {static} -int _stringToInt()
+  {static} -String _stringFromInt()
+}
+
+class "teoria_dos_jogos::classes::pdf.dart::Pdf" {
+  +Document pdfFile
+  +dynamic createPdf()
+  +dynamic salvePdf()
+}
+
+"teoria_dos_jogos::classes::pdf.dart::Pdf" o-- "pdf::widgets.dart::Document"
+
+class "teoria_dos_jogos::classes::pdf.dart::PdfWeb" {
+}
+
+class "teoria_dos_jogos::classes::time_taken_round_pd.dart::PDTimeRound" {
+  +int userId
+  +int round
+  +Duration dragCard
+  +dynamic setDragCard()
+}
+
+class "teoria_dos_jogos::classes::time_taken_round_pg.dart::PGTimeRound" {
+  +int userId
+  +int round
+  +Duration dragToken
+  +Duration distribution
+  +Duration election
+  +dynamic setDragToken()
+  +dynamic setDistribution()
+  +dynamic setElection()
+}
+
+class "teoria_dos_jogos::classes::time_taken_tutorial_pd.dart::PDTimeTutorial" {
+  +int userId
+  +Duration total
+  +Duration tutorial
+  +Duration distribution
+  +Duration election
+  +int sawTutorial
+  +int sawDistribution
+  +int sawElection
+  +dynamic setTutorial()
+  +dynamic sawTutorialCountUp()
+}
+
+class "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial" {
+  +int userId
+  +Duration total
+  +Duration main
+  +Duration distribution
+  +Duration election
+  +int sawMain
+  +int sawDistribution
+  +int sawElection
+  +dynamic setMain()
+  +dynamic setDistribution()
+  +dynamic setElection()
+  +dynamic sawMainCountUp()
+  +dynamic sawDistributionCountUp()
+  +dynamic sawElectionCountUp()
+}
+
+class "teoria_dos_jogos::classes::user.dart::User" {
+  +dynamic id
+  +String name
+  +dynamic age
+  +String gender
+  +String cours
+  +String imgPath
+  +String educationLevel
+  +String occupation
+  +String experiment
+  +String device
+  +DateTime start
+  +List<FlSpot> cooperateList
+  +List<FlSpot> defectList
+  +dynamic graphicCooperate()
+  +dynamic graphicdefect()
+}
+
+class "teoria_dos_jogos::generated::intl::messages_en.dart::MessageLookup" {
+  +Map<String, dynamic> messages
+  +String localeName
+  {static} -dynamic _notInlinedMessages()
+}
+
+"intl::message_lookup_by_library.dart::MessageLookupByLibrary" <|-- "teoria_dos_jogos::generated::intl::messages_en.dart::MessageLookup"
+
+class "teoria_dos_jogos::generated::l10n.dart::S" {
+  {static} +S current
+  {static} +AppLocalizationDelegate delegate
+  {static} +Future load()
+  {static} +S of()
+}
+
+"teoria_dos_jogos::generated::l10n.dart::S" o-- "teoria_dos_jogos::generated::l10n.dart::S"
+"teoria_dos_jogos::generated::l10n.dart::S" o-- "teoria_dos_jogos::generated::l10n.dart::AppLocalizationDelegate"
+
+class "teoria_dos_jogos::generated::l10n.dart::AppLocalizationDelegate" {
+  +List<Locale> supportedLocales
+  +bool isSupported()
+  +Future load()
+  +bool shouldReload()
+  -bool _isSupported()
+}
+
+"flutter::src::widgets::localizations.dart::LocalizationsDelegate<T>" <|-- "teoria_dos_jogos::generated::l10n.dart::AppLocalizationDelegate"
+
+class "teoria_dos_jogos::main.dart::MyApp" {
+  +AppLanguage appLanguage
+  +Widget build()
+}
+
+"teoria_dos_jogos::main.dart::MyApp" o-- "teoria_dos_jogos::AppLanguage.dart::AppLanguage"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::main.dart::MyApp"
+
+class "teoria_dos_jogos::main.dart::ChooseGamePage" {
+  +dynamic title
+  +_ChooseGamePageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::main.dart::ChooseGamePage"
+
+class "teoria_dos_jogos::main.dart::_ChooseGamePageState" {
+  +TextEditingController keytxt
+  -GlobalKey<State<StatefulWidget>> _keyLoader
+  +void initState()
+  -Future _handleSubmit()
+  +dynamic validateKey()
+  +dynamic loadCode()
+  +Widget build()
+}
+
+"teoria_dos_jogos::main.dart::_ChooseGamePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"teoria_dos_jogos::main.dart::_ChooseGamePageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::main.dart::_ChooseGamePageState"
+
+class "teoria_dos_jogos::main.dart::SliderExample" {
+  +_SliderExampleState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::main.dart::SliderExample"
+
+class "teoria_dos_jogos::main.dart::_SliderExampleState" {
+  +double rating
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::main.dart::_SliderExampleState"
+
+class "teoria_dos_jogos::myteste.dart::Myteste" {
+  +_MytesteState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::myteste.dart::Myteste"
+
+class "teoria_dos_jogos::myteste.dart::_MytesteState" {
+  +bool start
+  +bool show
+  +PublicGoodsVariables variables
+  +dynamic coinsAnimation
+  +void dispose()
+  +dynamic starta()
+  +Widget build()
+}
+
+"teoria_dos_jogos::myteste.dart::_MytesteState" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::myteste.dart::_MytesteState"
+
+class "teoria_dos_jogos::pages::UserForms.page.dart::UserForms" {
+  +dynamic game
+  +dynamic variables
+  +List<MaxLength> lengths
+  +_UserFormsState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::pages::UserForms.page.dart::UserForms"
+
+class "teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState" {
+  +dynamic dropImageValue
+  +User user
+  +TextEditingController txtName
+  +TextEditingController txtAge
+  +TextEditingController txtCurs
+  +TextEditingController txtOccupation
+  +bool other
+  +bool female
+  +bool male
+  +bool superior
+  +bool otherCurs
+  +List levels
+  +List courses
+  +dynamic dropdownEducation
+  +dynamic dropdownCurs
+  +DeviceInfoPlugin deviceInfo
+  -GlobalKey<FormState> _formKey
+  +void initState()
+  +dynamic validator()
+  +Widget build()
+}
+
+"teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState" o-- "device_info::device_info.dart::DeviceInfoPlugin"
+"teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::pages::UserForms.page.dart::_UserFormsState"
+
+class "teoria_dos_jogos::pages::welcome.page.dart::WelcomePage" {
+  +_WelcomePageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::pages::welcome.page.dart::WelcomePage"
+
+class "teoria_dos_jogos::pages::welcome.page.dart::_WelcomePageState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::pages::welcome.page.dart::_WelcomePageState"
+
+class "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables" {
+  +int id
+  +String key
+  +String algorithm
+  +String secondAlgorithm
+  +String gameName
+  +String descri
+  +int bothCooperate
+  +int bothDefect
+  +int cooperateLoses
+  +int defectWin
+  +int roundsNumber
+  +int maxTime
+  +int stable
+  +bool showRounds
+  +bool showClock
+  +bool showYourPoints
+  +bool showOtherPoints
+  +bool yourPointsRand
+  +bool otherPointsRand
+  +DateTime start
+  +DateTime end
+  +Map toJson()
+  {static} -int _stringToInt()
+  {static} -String _stringFromInt()
+  {static} -bool _stringToBool()
+  {static} -String _stringFromBool()
+  {static} +bool parseBool()
+}
+
+class "teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::DilemmaGamePage" {
+  +DilemmaVariables variables
+  +User user
+  +dynamic txtOtherChoice
+  +dynamic txtYourChoice
+  +PDTimeTutorial timeTutorial
+  +_DilemmaGamePageState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::DilemmaGamePage" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::DilemmaGamePage" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::DilemmaGamePage" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pd.dart::PDTimeTutorial"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::DilemmaGamePage"
+
+class "teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::_DilemmaGamePageState" {
+  +PrisonerDilemmaGame game
+  +Widget yourChoice
+  +Widget otherChoice
+  +int userChoice
+  +bool draggable
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::_DilemmaGamePageState" o-- "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::PrisonerDilemmaGame"
+"teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::_DilemmaGamePageState" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::pages::game.page.dart::_DilemmaGamePageState"
+
+class "teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::DilemmaTutorialPage" {
+  +DilemmaVariables variables
+  +User user
+  +_DilemmaTutorialPageState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::DilemmaTutorialPage" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::DilemmaTutorialPage" o-- "teoria_dos_jogos::classes::user.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::DilemmaTutorialPage"
+
+class "teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::_DilemmaTutorialPageState" {
+  +int i
+  +List<InterfaceAndText> exibitionOrder
+  +DateTime startTutorial
+  +PDTimeTutorial timeTutorial
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::_DilemmaTutorialPageState" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pd.dart::PDTimeTutorial"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::pages::tutorial.page.dart::_DilemmaTutorialPageState"
+
+class "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound" {
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_DilemmaRoundBase" <|-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+"teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_$DilemmaRound" <|-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_DilemmaRoundBase" {
+  +PDTimeRound timeRound
+  +int oponentChoice
+  +int userChoice
+  +bool lostRound
+  +int stableCount
+  +int round
+  +int oponentPoints
+  +int userPoints
+  +bool seeYourPoints
+  +bool seeOtherPoints
+  +bool yourRand
+  +bool otherRand
+  +String result
+  +dynamic calculateResult()
+  +dynamic printaLista()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_DilemmaRoundBase" o-- "teoria_dos_jogos::classes::time_taken_round_pd.dart::PDTimeRound"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_DilemmaRoundBase"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_$DilemmaRound" {
+  -dynamic _$roundAtom
+  -dynamic _$seeYourPointsAtom
+  -dynamic _$seeOtherPointsAtom
+  -dynamic _$yourRandAtom
+  -dynamic _$otherRandAtom
+  -dynamic _$resultAtom
+  -ActionController _$_DilemmaRoundBaseActionController
+  +int round
+  +bool seeYourPoints
+  +bool seeOtherPoints
+  +bool yourRand
+  +bool otherRand
+  +String result
+  +dynamic calculateResult()
+  +String toString()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::_$DilemmaRound" o-- "mobx::src::core.dart::ActionController"
+
+class "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::PrisonerDilemmaGame" {
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" <|-- "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::PrisonerDilemmaGame"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" <|-- "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::PrisonerDilemmaGame"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" {
+  +User user
+  +dynamic context
+  +DilemmaVariables variables
+  +PDTimeTutorial timeTutorial
+  +AudioCache audioCache
+  +dynamic yourTxt
+  +dynamic otherTxt
+  +bool lastToPlay
+  +bool endGame
+  +bool db
+  +dynamic currentlyAlgorithm
+  +bool startTiming
+  +dynamic animateClock
+  +Widget yourChoiceTarget
+  +Widget otherChoiceTarget
+  +bool draggable
+  +int oponentChoice
+  +int userChoice
+  +DilemmaRound dilemmaRound
+  +dynamic listRounds
+  +dynamic userId
+  +int otherPlayerDelay
+  +int waitDelay
+  +dynamic toggleYourPoints()
+  +dynamic toggleOtherPoints()
+  +dynamic onDragCard()
+  +dynamic executeAlgorithm()
+  +dynamic callPlayersDelay()
+  +dynamic checkStability()
+  +dynamic showResult()
+  +dynamic registerRound()
+  +dynamic nextRound()
+  +dynamic timeOut()
+  +dynamic sendDataToDatabase()
+  +dynamic showGraphic()
+  +dynamic onEndCardAnimation()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pd.dart::PDTimeTutorial"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "audioplayers::audio_cache.dart::AudioCache"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "flutter::src::widgets::framework.dart::Widget"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase" o-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_PrisonerDilemmaGameBase"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" {
+  -dynamic _$startTimingAtom
+  -dynamic _$animateClockAtom
+  -dynamic _$yourChoiceTargetAtom
+  -dynamic _$otherChoiceTargetAtom
+  -dynamic _$draggableAtom
+  -dynamic _$oponentChoiceAtom
+  -dynamic _$userChoiceAtom
+  -dynamic _$dilemmaRoundAtom
+  -dynamic _$otherPlayerDelayAtom
+  -dynamic _$waitDelayAtom
+  -AsyncAction _$executeAlgorithmAsyncAction
+  -AsyncAction _$sendDataToDatabaseAsyncAction
+  -ActionController _$_PrisonerDilemmaGameBaseActionController
+  +bool startTiming
+  +dynamic animateClock
+  +Widget yourChoiceTarget
+  +Widget otherChoiceTarget
+  +bool draggable
+  +int oponentChoice
+  +int userChoice
+  +DilemmaRound dilemmaRound
+  +int otherPlayerDelay
+  +int waitDelay
+  +dynamic executeAlgorithm()
+  +dynamic sendDataToDatabase()
+  +dynamic toggleYourPoints()
+  +dynamic toggleOtherPoints()
+  +dynamic onDragCard()
+  +dynamic callPlayersDelay()
+  +dynamic checkStability()
+  +dynamic showResult()
+  +dynamic registerRound()
+  +dynamic nextRound()
+  +dynamic timeOut()
+  +dynamic showGraphic()
+  +dynamic onEndCardAnimation()
+  +dynamic toString()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" o-- "mobx::src::api::async.dart::AsyncAction"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" o-- "mobx::src::core.dart::ActionController"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" o-- "flutter::src::widgets::framework.dart::Widget"
+"teoria_dos_jogos::prisoners_dilemma::store::prisoner_dilemma_game_store.dart::_$PrisonerDilemmaGame" o-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::PrisonerDilemmaTutorial" {
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::PrisonerDilemmaTutorial"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::PrisonerDilemmaTutorial"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" {
+  +dynamic context
+  +DilemmaVariables variables
+  +AudioCache audioCache
+  +dynamic yourTxt
+  +dynamic otherTxt
+  +bool lastToPlay
+  +Function next
+  +bool startTiming
+  +dynamic animateClock
+  +Widget yourChoiceTarget
+  +Widget otherChoiceTarget
+  +bool draggable
+  +int oponentChoice
+  +int userChoice
+  +DilemmaRound dilemmaRound
+  +dynamic listRounds
+  +dynamic userId
+  +int otherPlayerDelay
+  +int waitDelay
+  +dynamic toggleYourPoints()
+  +dynamic toggleOtherPoints()
+  +dynamic onDragCard()
+  +dynamic computeChoice()
+  +dynamic showResult()
+  +dynamic nextRound()
+  +dynamic timeOut()
+  +dynamic sendDataToDatabase()
+  +dynamic showGraphic()
+  +dynamic onEndCardAnimation()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" o-- "audioplayers::audio_cache.dart::AudioCache"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" o-- "flutter::src::widgets::framework.dart::Widget"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase" o-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_PrisonerDilemmaTutorialBase"
+
+abstract class "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" {
+  -dynamic _$startTimingAtom
+  -dynamic _$animateClockAtom
+  -dynamic _$yourChoiceTargetAtom
+  -dynamic _$otherChoiceTargetAtom
+  -dynamic _$draggableAtom
+  -dynamic _$oponentChoiceAtom
+  -dynamic _$userChoiceAtom
+  -dynamic _$dilemmaRoundAtom
+  -dynamic _$otherPlayerDelayAtom
+  -dynamic _$waitDelayAtom
+  -AsyncAction _$computeChoiceAsyncAction
+  -AsyncAction _$sendDataToDatabaseAsyncAction
+  -ActionController _$_PrisonerDilemmaTutorialBaseActionController
+  +bool startTiming
+  +dynamic animateClock
+  +Widget yourChoiceTarget
+  +Widget otherChoiceTarget
+  +bool draggable
+  +int oponentChoice
+  +int userChoice
+  +DilemmaRound dilemmaRound
+  +int otherPlayerDelay
+  +int waitDelay
+  +dynamic computeChoice()
+  +dynamic sendDataToDatabase()
+  +dynamic toggleYourPoints()
+  +dynamic toggleOtherPoints()
+  +dynamic onDragCard()
+  +dynamic showResult()
+  +dynamic nextRound()
+  +dynamic timeOut()
+  +dynamic showGraphic()
+  +dynamic onEndCardAnimation()
+  +dynamic toString()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" o-- "mobx::src::api::async.dart::AsyncAction"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" o-- "mobx::src::core.dart::ActionController"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" o-- "flutter::src::widgets::framework.dart::Widget"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::_$PrisonerDilemmaTutorial" o-- "teoria_dos_jogos::prisoners_dilemma::store::dilemmaround_store.dart::DilemmaRound"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::DilemmaGameTutorial" {
+  +DilemmaVariables variables
+  +dynamic txtOtherChoice
+  +dynamic txtYourChoice
+  +bool draggable
+  +Function next
+  +_DilemmaGameTutorialState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::DilemmaGameTutorial" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::DilemmaGameTutorial"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::_DilemmaGameTutorialState" {
+  +PrisonerDilemmaTutorial game
+  +bool hideVariables
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::_DilemmaGameTutorialState" o-- "teoria_dos_jogos::prisoners_dilemma::tutorial::dilemma_tutorial_store.dart::PrisonerDilemmaTutorial"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::gameExample.dart::_DilemmaGameTutorialState"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::instruction.dart::Instruction" {
+  +dynamic txtInstruction
+  +Alignment alignment
+  +EdgeInsetsGeometry padding
+  +Color backgroundColor
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::instruction.dart::Instruction" o-- "flutter::src::painting::alignment.dart::Alignment"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::instruction.dart::Instruction" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"teoria_dos_jogos::prisoners_dilemma::tutorial::instruction.dart::Instruction" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::instruction.dart::Instruction"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::matrixExample.dart::MatrixExample" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::matrixExample.dart::MatrixExample"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::matrixExample.dart::MatrixCase" {
+  +Color you
+  +Color other
+  +dynamic result
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::matrixExample.dart::MatrixCase" o-- "dart::ui::Color"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::resultExample.dart::DilemmaResultExample" {
+  +dynamic yourChoice
+  +dynamic otherChoice
+  +dynamic result
+  +Color your
+  +Color other
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::resultExample.dart::DilemmaResultExample" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::resultExample.dart::DilemmaResultExample"
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::tutorialList.dart::InterfaceAndText" {
+  +int textIndex
+  +int interfaceIndex
+  +bool enableNext
+}
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::tutorialList.dart::WidgetsList" {
+  {static} +dynamic orderInterfaceAndText()
+  {static} +dynamic backWidgets()
+  {static} +dynamic instructions()
+}
+
+class "teoria_dos_jogos::prisoners_dilemma::tutorial::whiteBackground.dart::WhiteBackgroundText" {
+  +dynamic txt
+  +double fontScale
+  +FontWeight fontWeight
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::tutorial::whiteBackground.dart::WhiteBackgroundText" o-- "dart::ui::FontWeight"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::tutorial::whiteBackground.dart::WhiteBackgroundText"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::AnimatedCard" {
+  +Color color
+  +Function onEnd
+  +Offset offset
+  +_AnimatedCardState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::AnimatedCard" o-- "dart::ui::Color"
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::AnimatedCard" o-- "dart::ui::Offset"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::AnimatedCard"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::_AnimatedCardState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::animatedCard.dart::_AnimatedCardState"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::AnimatedResult" {
+  +Offset offset
+  +Color color1
+  +Color color2
+  +int value1
+  +int value2
+  +double p
+  +_AnimatedResultState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::AnimatedResult" o-- "dart::ui::Offset"
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::AnimatedResult" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::AnimatedResult"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState" {
+  +AnimationController controller
+  +Tween<Offset> animationLocation
+  +Tween<double> animationScale
+  +bool showLabel
+  +double begin
+  +double targetValue
+  +double end
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState" o-- "flutter::src::animation::tween.dart::Tween<Offset>"
+"teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState" o-- "flutter::src::animation::tween.dart::Tween<double>"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::animatedResult.dart::_AnimatedResultState"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::dilemmaCard.dart::DilemmaCard" {
+  +Color color
+  +Color borderColor
+  +double proportion
+  +dynamic txt
+  +dynamic txtTitle
+  +double fontScale
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::dilemmaCard.dart::DilemmaCard" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::dilemmaCard.dart::DilemmaCard"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::draggableCard.dart::DraggableCard" {
+  +Color color
+  +bool draggable
+  +Widget build()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::draggableCard.dart::DraggableCard" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::draggableCard.dart::DraggableCard"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::graphic.dart::Graphic" {
+  +List<FlSpot> cooperate
+  +List<FlSpot> defect
+  +_GraphicState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::graphic.dart::Graphic"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::graphic.dart::_GraphicState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::graphic.dart::_GraphicState"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::resultsMatrix.dart::ResultsMatrix" {
+  +double p
+  +bool animate
+  +dynamic result
+  +DilemmaVariables variables
+  +_ResultsMatrixState createState()
+}
+
+"teoria_dos_jogos::prisoners_dilemma::widgets::resultsMatrix.dart::ResultsMatrix" o-- "teoria_dos_jogos::prisoners_dilemma::classes::dilemmaVariables.dart::DilemmaVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::resultsMatrix.dart::ResultsMatrix"
+
+class "teoria_dos_jogos::prisoners_dilemma::widgets::resultsMatrix.dart::_ResultsMatrixState" {
+  +double opacity
+  +double opInvisible
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::prisoners_dilemma::widgets::resultsMatrix.dart::_ResultsMatrixState"
+
+class "teoria_dos_jogos::public_goods::classes::conditions.dart::Conditions" {
+  +dynamic context
+  +List<int> rounds
+  +bool distribution
+  +bool electionEnabled
+  +Function setDistributionTrue
+  +Function callElection
+  +Function nextRound
+  +Function nextLevel
+  +Function clearLists
+  +Function lostVote
+  +Function startSuspension
+  +Function getSuspensions
+  +Function electionCountUp
+  +Function distributionStableCountUp
+  +Function showGraphic
+  +PublicGoodsVariables variables
+  +List<RoundData> roundsData
+  +bool lostVoteThisRound
+  +bool suspended
+  +bool next
+  +bool endGame
+  +bool readyToElection
+  +dynamic checkStability()
+  +dynamic isStableToDistribution()
+  +dynamic checkLostVote()
+  +dynamic isReadyToElection()
+  +dynamic checkIntermitentElection()
+  +dynamic checkElection()
+  +dynamic endSuspension()
+}
+
+"teoria_dos_jogos::public_goods::classes::conditions.dart::Conditions" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+
+class "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables" {
+  +int id
+  +String key
+  +int maxTokens
+  +int time
+  +int factor
+  +int maxTrys
+  +int realPlayers
+  +int notRealPlayers
+  +String name
+  +String descri
+  +DateTime start
+  +DateTime end
+  +bool showRounds
+  +int timeDistribution
+  +int timeElection
+  +int contributionsVariation
+  +int distributionVariation
+  +int unfairDistribution
+  +int stable
+  +int limitVotes
+  +int waitingRounds
+  +int electionRule
+  +Map toJson()
+  {static} -int _stringToInt()
+  {static} -String _stringFromInt()
+  {static} -int _ruleToInt()
+  {static} -String _ruleFromInt()
+  {static} -bool _stringToBool()
+  {static} -String _stringFromBool()
+  {static} +bool parseBool()
+  {static} +int getRule()
+  +dynamic maxWalletValue()
+}
+
+class "teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::DistributionTutorial" {
+  +PublicGoodsVariables goodsVariables
+  +Function nextRound
+  +PGTimeTutorial timeTutorial
+  +_DistributionTutorialState createState()
+}
+
+"teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::DistributionTutorial" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::DistributionTutorial" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::DistributionTutorial"
+
+class "teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::_DistributionTutorialState" {
+  +int i
+  +List<Widget> interfaces
+  +List<Widget> instructions
+  +List<InterfaceAndText> exibitionOrder
+  +DateTime startTutorial
+  +void initState()
+  +void dispose()
+  +dynamic next()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::pages::distributionTutorial.page.dart::_DistributionTutorialState"
+
+class "teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::ElectionTutorial" {
+  +PublicGoodsVariables goodsVariables
+  +Function callElection
+  +PGTimeTutorial timeTutorial
+  +_ElectionTutorialState createState()
+}
+
+"teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::ElectionTutorial" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::ElectionTutorial" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::ElectionTutorial"
+
+class "teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::_ElectionTutorialState" {
+  +int i
+  +List<Widget> interfaces
+  +List<Widget> instructions
+  +List<InterfaceAndText> exibitionOrder
+  +DateTime startTutorial
+  +void initState()
+  +void dispose()
+  +dynamic next()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::pages::electionTutorial.page.dart::_ElectionTutorialState"
+
+class "teoria_dos_jogos::public_goods::pages::game.page.dart::GamePage" {
+  +User user
+  +PublicGoodsVariables variables
+  +PGTimeTutorial timeTutorial
+  +_GamePageState createState()
+}
+
+"teoria_dos_jogos::public_goods::pages::game.page.dart::GamePage" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::public_goods::pages::game.page.dart::GamePage" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"teoria_dos_jogos::public_goods::pages::game.page.dart::GamePage" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::pages::game.page.dart::GamePage"
+
+class "teoria_dos_jogos::public_goods::pages::game.page.dart::_GamePageState" {
+  +bool start
+  +Game game
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::pages::game.page.dart::_GamePageState" o-- "teoria_dos_jogos::public_goods::store::game_store.dart::Game"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::pages::game.page.dart::_GamePageState"
+
+class "teoria_dos_jogos::public_goods::pages::Graphic.page.dart::GraphicPagePG" {
+  +List<RoundData> gameRounds
+  +PublicGoodsVariables variables
+  +_GraphicPagePGState createState()
+}
+
+"teoria_dos_jogos::public_goods::pages::Graphic.page.dart::GraphicPagePG" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::pages::Graphic.page.dart::GraphicPagePG"
+
+class "teoria_dos_jogos::public_goods::pages::Graphic.page.dart::_GraphicPagePGState" {
+  -GlobalKey<State<StatefulWidget>> _globalKey
+  +bool inside
+  +Uint8List imageInMemory
+  +Image img
+  -Future _capturePng()
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::pages::Graphic.page.dart::_GraphicPagePGState" o-- "flutter::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"teoria_dos_jogos::public_goods::pages::Graphic.page.dart::_GraphicPagePGState" o-- "dart::typed_data::Uint8List"
+"teoria_dos_jogos::public_goods::pages::Graphic.page.dart::_GraphicPagePGState" o-- "flutter::src::widgets::image.dart::Image"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::pages::Graphic.page.dart::_GraphicPagePGState"
+
+class "teoria_dos_jogos::public_goods::pages::Graphic.page.dart::ResultPubliGoods" {
+  {static} +dynamic f1Spots()
+}
+
+class "teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::PublicGoodsTutorialPage" {
+  +User user
+  +PublicGoodsVariables goodsVariables
+  +_PublicGoodsTutorialPageState createState()
+}
+
+"teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::PublicGoodsTutorialPage" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::PublicGoodsTutorialPage" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::PublicGoodsTutorialPage"
+
+class "teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::_PublicGoodsTutorialPageState" {
+  +PGTimeTutorial timeTutorial
+  +DateTime startTutorial
+  +List<InterfaceAndText> indexList
+  +int i
+  +List<Widget> instructions
+  +bool btnIsVisible
+  +bool toCenter
+  +bool showCoins
+  +bool clicked
+  +dynamic multipleCoinsEnd()
+  +dynamic instructionDelay()
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::_PublicGoodsTutorialPageState" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::pages::PublicGoodsTutorial.page.dart::_PublicGoodsTutorialPageState"
+
+class "teoria_dos_jogos::public_goods::store::distribution_store.dart::DistributionStore" {
+}
+
+"teoria_dos_jogos::public_goods::store::distribution_store.dart::_DistributionStoreBase" <|-- "teoria_dos_jogos::public_goods::store::distribution_store.dart::DistributionStore"
+"teoria_dos_jogos::public_goods::store::distribution_store.dart::_$DistributionStore" <|-- "teoria_dos_jogos::public_goods::store::distribution_store.dart::DistributionStore"
+
+abstract class "teoria_dos_jogos::public_goods::store::distribution_store.dart::_DistributionStoreBase" {
+  +int rib
+  +Function distributionTime
+  +dynamic displayDistributionScreen()
+}
+
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::store::distribution_store.dart::_DistributionStoreBase"
+
+abstract class "teoria_dos_jogos::public_goods::store::distribution_store.dart::_$DistributionStore" {
+  +dynamic toString()
+}
+
+class "teoria_dos_jogos::public_goods::store::election_store.dart::ElectionStore" {
+}
+
+"teoria_dos_jogos::public_goods::store::election_store.dart::_ElectionStoreBase" <|-- "teoria_dos_jogos::public_goods::store::election_store.dart::ElectionStore"
+"teoria_dos_jogos::public_goods::store::election_store.dart::_$ElectionStore" <|-- "teoria_dos_jogos::public_goods::store::election_store.dart::ElectionStore"
+
+abstract class "teoria_dos_jogos::public_goods::store::election_store.dart::_ElectionStoreBase" {
+  +int electionId
+  +Function electionTime
+  +Function updateVotes
+  +Function showGraphic
+  +RoundData roundData
+  +Function startSuspension
+  +PublicGoodsVariables variables
+  +dynamic rounds
+  +dynamic context
+  +dynamic displayElectionScreen()
+  +dynamic concludeElection()
+}
+
+"teoria_dos_jogos::public_goods::store::election_store.dart::_ElectionStoreBase" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::store::election_store.dart::_ElectionStoreBase" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::store::election_store.dart::_ElectionStoreBase"
+
+abstract class "teoria_dos_jogos::public_goods::store::election_store.dart::_$ElectionStore" {
+  +dynamic toString()
+}
+
+class "teoria_dos_jogos::public_goods::store::game_store.dart::Game" {
+}
+
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" <|-- "teoria_dos_jogos::public_goods::store::game_store.dart::Game"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" <|-- "teoria_dos_jogos::public_goods::store::game_store.dart::Game"
+
+abstract class "teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" {
+  +PublicGoodsVariables variables
+  +bool armazenarBD
+  +User user
+  +PGTimeTutorial timeTutorial
+  +AudioCache audioCache
+  +bool lastToPlay
+  +bool pagePopped
+  +dynamic context
+  +dynamic rounds
+  +dynamic contributions
+  +dynamic distributions
+  +GlobalKey<FlipCardState> cardKey
+  +FlareControls flareControls
+  +bool startTiming
+  +bool showPanelTokens
+  +dynamic coinsAnimation
+  +Function coinsEnd
+  +dynamic animateClock
+  +ObservableList<int> tokensList
+  +RoundData roundData
+  +RunningNumbers tokensCount
+  +RunningNumbers walletCount
+  +RunningNumbers pigCount
+  +int plasyersLostTime
+  +dynamic registerRoundData()
+  +dynamic clearLists()
+  +dynamic showGraphic()
+  +dynamic sendDataToDatabase()
+  +dynamic callElections()
+  +dynamic onDispose()
+  +dynamic endRunningNumbers()
+  +dynamic nextRound()
+  +dynamic nextLevel()
+  +dynamic onDragToken()
+  +dynamic resultWhenPlayed()
+  +dynamic concludeDistribution()
+  +dynamic timeOut()
+  +dynamic callPlayersDelay()
+  +dynamic onCoinsEndAnimation()
+  +dynamic endCoinsToPig()
+  +dynamic remainingTokensToPig()
+  +dynamic endCountEarningTokens()
+  +dynamic showCoins()
+  +dynamic pulseTheClock()
+  +dynamic blinkPanel()
+}
+
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "teoria_dos_jogos::classes::time_taken_tutorial_pg.dart::PGTimeTutorial"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "audioplayers::audio_cache.dart::AudioCache"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "flare_flutter::flare_controls.dart::FlareControls"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "mobx::src::api::observable_collections.dart::ObservableList<int>"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase" o-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::store::game_store.dart::_GameBase"
+
+abstract class "teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" {
+  -dynamic _$cardKeyAtom
+  -dynamic _$flareControlsAtom
+  -dynamic _$startTimingAtom
+  -dynamic _$showPanelTokensAtom
+  -dynamic _$coinsAnimationAtom
+  -dynamic _$coinsEndAtom
+  -dynamic _$animateClockAtom
+  -dynamic _$tokensListAtom
+  -dynamic _$roundDataAtom
+  -dynamic _$tokensCountAtom
+  -dynamic _$walletCountAtom
+  -dynamic _$pigCountAtom
+  -AsyncAction _$onCoinsEndAnimationAsyncAction
+  -ActionController _$_GameBaseActionController
+  +GlobalKey<FlipCardState> cardKey
+  +FlareControls flareControls
+  +bool startTiming
+  +bool showPanelTokens
+  +dynamic coinsAnimation
+  +Function coinsEnd
+  +dynamic animateClock
+  +ObservableList<int> tokensList
+  +RoundData roundData
+  +RunningNumbers tokensCount
+  +RunningNumbers walletCount
+  +RunningNumbers pigCount
+  +dynamic onCoinsEndAnimation()
+  +dynamic callElections()
+  +dynamic onDispose()
+  +dynamic endRunningNumbers()
+  +dynamic nextRound()
+  +dynamic nextLevel()
+  +dynamic onDragToken()
+  +dynamic resultWhenPlayed()
+  +dynamic concludeDistribution()
+  +dynamic timeOut()
+  +dynamic callPlayersDelay()
+  +dynamic endCoinsToPig()
+  +dynamic remainingTokensToPig()
+  +dynamic endCountEarningTokens()
+  +dynamic showCoins()
+  +dynamic pulseTheClock()
+  +dynamic blinkPanel()
+  +dynamic toString()
+}
+
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "mobx::src::api::async.dart::AsyncAction"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "mobx::src::core.dart::ActionController"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "flare_flutter::flare_controls.dart::FlareControls"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "mobx::src::api::observable_collections.dart::ObservableList<int>"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::store::game_store.dart::_$Game" o-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+
+class "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData" {
+}
+
+"teoria_dos_jogos::public_goods::store::round_data_store.dart::_RoundDataBase" <|-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::store::round_data_store.dart::_$RoundData" <|-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+
+abstract class "teoria_dos_jogos::public_goods::store::round_data_store.dart::_RoundDataBase" {
+  +PGTimeRound timeRound
+  +bool distribution
+  +bool election
+  +int electionId
+  +int votes
+  +int suspentions
+  +int votesScreen
+  +int electionCount
+  +int distributionStable
+  +int distributionStableAfterSecondElection
+  +bool suspended
+  +int round
+  +int id
+  +int userTokens
+  +int wallet
+  +int positionToken
+  +int investment
+  +int total
+  +int rib
+  +int earning
+  +int playersPlay
+  +int roundPoints
+  +dynamic playersInvestiment
+  +dynamic playersEarning
+  +dynamic printData()
+  +dynamic setDistributionTrue()
+  +int lostVote()
+  +dynamic updateVotes()
+  +dynamic endSuspension()
+  +dynamic startSuspension()
+  +bool electionCountUp()
+  +bool distributionStableCountUp()
+  +dynamic distributeRib()
+  +dynamic calculateRib()
+  +dynamic generateRound()
+  +dynamic getPoints()
+  +int getSuspensions()
+  +dynamic updateWallet()
+  +dynamic generateRoundWhenLostTime()
+  +dynamic definePlayersDelay()
+}
+
+"teoria_dos_jogos::public_goods::store::round_data_store.dart::_RoundDataBase" o-- "teoria_dos_jogos::classes::time_taken_round_pg.dart::PGTimeRound"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::_RoundDataBase"
+
+abstract class "teoria_dos_jogos::public_goods::store::round_data_store.dart::_$RoundData" {
+  -dynamic _$votesScreenAtom
+  -dynamic _$suspendedAtom
+  -dynamic _$roundAtom
+  -dynamic _$userTokensAtom
+  -dynamic _$walletAtom
+  -dynamic _$earningAtom
+  -dynamic _$playersPlayAtom
+  -ActionController _$_RoundDataBaseActionController
+  +int votesScreen
+  +bool suspended
+  +int round
+  +int userTokens
+  +int wallet
+  +int earning
+  +int playersPlay
+  +dynamic updateVotes()
+  +dynamic endSuspension()
+  +dynamic startSuspension()
+  +String toString()
+}
+
+"teoria_dos_jogos::public_goods::store::round_data_store.dart::_$RoundData" o-- "mobx::src::core.dart::ActionController"
+
+class "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers" {
+}
+
+"teoria_dos_jogos::public_goods::store::runningNumbers.dart::_RunningNumbersBase" <|-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+"teoria_dos_jogos::public_goods::store::runningNumbers.dart::_$RunningNumbers" <|-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+
+abstract class "teoria_dos_jogos::public_goods::store::runningNumbers.dart::_RunningNumbersBase" {
+  +bool start
+  +bool down
+  +int inicial
+  +int diference
+  +int factor
+  +dynamic startCountUp()
+  +dynamic startCountDown()
+  +dynamic stop()
+  +dynamic setValues()
+}
+
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::_RunningNumbersBase"
+
+abstract class "teoria_dos_jogos::public_goods::store::runningNumbers.dart::_$RunningNumbers" {
+  -dynamic _$startAtom
+  -dynamic _$downAtom
+  -dynamic _$inicialAtom
+  -dynamic _$diferenceAtom
+  -dynamic _$factorAtom
+  -ActionController _$_RunningNumbersBaseActionController
+  +bool start
+  +bool down
+  +int inicial
+  +int diference
+  +int factor
+  +dynamic startCountUp()
+  +dynamic startCountDown()
+  +dynamic stop()
+  +dynamic setValues()
+  +String toString()
+}
+
+"teoria_dos_jogos::public_goods::store::runningNumbers.dart::_$RunningNumbers" o-- "mobx::src::core.dart::ActionController"
+
+class "teoria_dos_jogos::public_goods::tutorial::circleIndex.dart::CircleIndex" {
+  +bool current
+  +_CircleIndexState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::circleIndex.dart::CircleIndex"
+
+class "teoria_dos_jogos::public_goods::tutorial::circleIndex.dart::_CircleIndexState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::circleIndex.dart::_CircleIndexState"
+
+class "teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::CirclePeople" {
+  +bool show
+  +Function multipleCoinsEnd
+  +bool toCenter
+  +PublicGoodsVariables variables
+  +_CirclePeopleState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::CirclePeople" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::CirclePeople"
+
+class "teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::_CirclePeopleState" {
+  +RoundData roundData
+  +GlobalKey<FlipCardState> cardKey
+  +dynamic coinsToCenter()
+  +dynamic coinsOutCenter()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::_CirclePeopleState" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::_CirclePeopleState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::circlePeople.dart::_CirclePeopleState"
+
+class "teoria_dos_jogos::public_goods::tutorial::coinsAround.dart::CoinsAround" {
+  +double screenHeight
+  +Function coinsEndAnimation
+  +Function coinsToCenter
+  +Function coinsOutCenter
+  +bool toCenter
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::coinsAround.dart::CoinsAround"
+
+class "teoria_dos_jogos::public_goods::tutorial::instructionArrowContainer.dart::InstructionArrow" {
+  +dynamic instructiontxt
+  +double top
+  +double left
+  +double right
+  +double bottom
+  +bool column
+  +IconData icon
+  +double width
+  +Alignment alignment
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::instructionArrowContainer.dart::InstructionArrow" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"teoria_dos_jogos::public_goods::tutorial::instructionArrowContainer.dart::InstructionArrow" o-- "flutter::src::painting::alignment.dart::Alignment"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::instructionArrowContainer.dart::InstructionArrow"
+
+class "teoria_dos_jogos::public_goods::tutorial::instructionContainer.dart::Instruction" {
+  +dynamic instructiontxt
+  +bool column
+  +IconData icon
+  +double width
+  +Alignment alignment
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::instructionContainer.dart::Instruction" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"teoria_dos_jogos::public_goods::tutorial::instructionContainer.dart::Instruction" o-- "flutter::src::painting::alignment.dart::Alignment"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::instructionContainer.dart::Instruction"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::PublicGoodsTutorial" {
+  +Function function
+  +PublicGoodsVariables variables
+  +bool tutorialDistElection
+  +_PublicGoodsTutorialState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::PublicGoodsTutorial" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::PublicGoodsTutorial"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::_PublicGoodsTutorialState" {
+  +GlobalKey<FlipCardState> cardKey
+  +List<int> chipsList
+  +bool showCoins
+  +bool isDraggable
+  +AudioCache audioCache
+  +RoundData roundData
+  +bool showRoundPoints
+  +dynamic timerString
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::_PublicGoodsTutorialState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::_PublicGoodsTutorialState" o-- "audioplayers::audio_cache.dart::AudioCache"
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::_PublicGoodsTutorialState" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterface.dart::_PublicGoodsTutorialState"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::PublicGoodsCircle" {
+  +PublicGoodsVariables variables
+  +_PublicGoodsCircleState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::PublicGoodsCircle" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::PublicGoodsCircle"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::_PublicGoodsCircleState" {
+  +GlobalKey<FlipCardState> cardKey
+  +List<int> chipsList
+  +bool showCoins
+  +bool isDraggable
+  +dynamic timerString
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::_PublicGoodsCircleState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceCircle.dart::_PublicGoodsCircleState"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::PublicGoodsTimer" {
+  +PublicGoodsVariables variables
+  +_PublicGoodsTimerState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::PublicGoodsTimer" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::PublicGoodsTimer"
+
+class "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::_PublicGoodsTimerState" {
+  +GlobalKey<FlipCardState> cardKey
+  +List<int> chipsList
+  +bool showCoins
+  +bool isDraggable
+  +dynamic animationClock
+  +bool startTiming
+  +AudioCache audioCache
+  +void initState()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::_PublicGoodsTimerState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::_PublicGoodsTimerState" o-- "audioplayers::audio_cache.dart::AudioCache"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::publicGoodsInterfaceTimer.dart::_PublicGoodsTimerState"
+
+class "teoria_dos_jogos::public_goods::tutorial::rectInstruction.dart::InstructionRect" {
+  +dynamic instructiontxt
+  +Alignment alignment
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::rectInstruction.dart::InstructionRect" o-- "flutter::src::painting::alignment.dart::Alignment"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::rectInstruction.dart::InstructionRect"
+
+class "teoria_dos_jogos::public_goods::tutorial::rectInstruction.dart::PainterLines" {
+  +double top
+  +double left
+  +double stroke
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::src::rendering::custom_paint.dart::CustomPainter" <|-- "teoria_dos_jogos::public_goods::tutorial::rectInstruction.dart::PainterLines"
+
+class "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::TutorialGameStore" {
+}
+
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" <|-- "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::TutorialGameStore"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" <|-- "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::TutorialGameStore"
+
+abstract class "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" {
+  +PublicGoodsVariables variables
+  +Function tutorialNext
+  +AudioCache audioCache
+  +bool lastToPlay
+  +dynamic context
+  +dynamic rounds
+  +dynamic contributions
+  +dynamic distributions
+  +GlobalKey<FlipCardState> cardKey
+  +FlareControls flareControls
+  +bool startTiming
+  +bool showPanelTokens
+  +dynamic coinsAnimation
+  +dynamic animateClock
+  +ObservableList<int> tokensList
+  +RoundData roundData
+  +RunningNumbers tokensCount
+  +RunningNumbers walletCount
+  +RunningNumbers pigCount
+  +Function coinsEnd
+  +dynamic registerRoundData()
+  +dynamic clearLists()
+  +dynamic showGraphic()
+  +dynamic nextLevel()
+  +dynamic callElections()
+  +dynamic onDispose()
+  +dynamic endRunningNumbers()
+  +dynamic nextRound()
+  +dynamic onDragToken()
+  +dynamic resultWhenPlayed()
+  +dynamic concludeDistribution()
+  +dynamic timeOut()
+  +dynamic callPlayersDelay()
+  +dynamic onCoinsEndAnimation()
+  +dynamic endCoinsToPig()
+  +dynamic remainingTokensToPig()
+  +dynamic endCountEarningTokens()
+  +dynamic showCoins()
+  +dynamic pulseTheClock()
+  +dynamic blinkPanel()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "audioplayers::audio_cache.dart::AudioCache"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "flare_flutter::flare_controls.dart::FlareControls"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "mobx::src::api::observable_collections.dart::ObservableList<int>"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase" o-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+"mobx::src::api::store.dart::Store" <|-- "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_TutorialGameStoreBase"
+
+abstract class "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" {
+  -dynamic _$cardKeyAtom
+  -dynamic _$flareControlsAtom
+  -dynamic _$startTimingAtom
+  -dynamic _$showPanelTokensAtom
+  -dynamic _$coinsAnimationAtom
+  -dynamic _$animateClockAtom
+  -dynamic _$tokensListAtom
+  -dynamic _$roundDataAtom
+  -dynamic _$tokensCountAtom
+  -dynamic _$walletCountAtom
+  -dynamic _$pigCountAtom
+  -dynamic _$coinsEndAtom
+  -AsyncAction _$onCoinsEndAnimationAsyncAction
+  -ActionController _$_TutorialGameStoreBaseActionController
+  +GlobalKey<FlipCardState> cardKey
+  +FlareControls flareControls
+  +bool startTiming
+  +bool showPanelTokens
+  +dynamic coinsAnimation
+  +dynamic animateClock
+  +ObservableList<int> tokensList
+  +RoundData roundData
+  +RunningNumbers tokensCount
+  +RunningNumbers walletCount
+  +RunningNumbers pigCount
+  +Function coinsEnd
+  +dynamic onCoinsEndAnimation()
+  +dynamic nextLevel()
+  +dynamic callElections()
+  +dynamic onDispose()
+  +dynamic endRunningNumbers()
+  +dynamic nextRound()
+  +dynamic onDragToken()
+  +dynamic resultWhenPlayed()
+  +dynamic concludeDistribution()
+  +dynamic timeOut()
+  +dynamic callPlayersDelay()
+  +dynamic endCoinsToPig()
+  +dynamic remainingTokensToPig()
+  +dynamic endCountEarningTokens()
+  +dynamic showCoins()
+  +dynamic pulseTheClock()
+  +dynamic blinkPanel()
+  +dynamic toString()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "mobx::src::api::async.dart::AsyncAction"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "mobx::src::core.dart::ActionController"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "flutter::src::widgets::framework.dart::GlobalKey<FlipCardState>"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "flare_flutter::flare_controls.dart::FlareControls"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "mobx::src::api::observable_collections.dart::ObservableList<int>"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "teoria_dos_jogos::public_goods::store::round_data_store.dart::RoundData"
+"teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::_$TutorialGameStore" o-- "teoria_dos_jogos::public_goods::store::runningNumbers.dart::RunningNumbers"
+
+class "teoria_dos_jogos::public_goods::tutorial::tutorialDesc.dart::PublicGoodsDesc" {
+  +dynamic text1
+  +dynamic text2
+  +Color text2Color
+  +dynamic redText
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::tutorialDesc.dart::PublicGoodsDesc" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::tutorialDesc.dart::PublicGoodsDesc"
+
+class "teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::TutorialGamePage" {
+  +Function next
+  +PublicGoodsVariables variables
+  +_TutorialGamePageState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::TutorialGamePage" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::TutorialGamePage"
+
+class "teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::_TutorialGamePageState" {
+  +TutorialGameStore game
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::_TutorialGamePageState" o-- "teoria_dos_jogos::public_goods::tutorial::store::pgtutorial_store.dart::TutorialGameStore"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial::tutorialGame.dart::_TutorialGamePageState"
+
+class "teoria_dos_jogos::public_goods::tutorial::tutorialLists.dart::InterfaceAndText" {
+  +int textIndex
+  +int interfaceIndex
+  +bool enableNext
+}
+
+class "teoria_dos_jogos::public_goods::tutorial::tutorialLists.dart::TutorialList" {
+  {static} +dynamic orderInterfaceAndText()
+  {static} +dynamic backWidgets()
+  {static} +dynamic instructions()
+}
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::distributionExample.dart::DistributionExample" {
+  +PublicGoodsVariables goodsVariables
+  +Function next
+  +bool confirmEnabled
+  +_DistributionExampleState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_distribution::distributionExample.dart::DistributionExample" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::distributionExample.dart::DistributionExample"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::distributionExample.dart::_DistributionExampleState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::distributionExample.dart::_DistributionExampleState"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::DistributionSimulation" {
+  +User user
+  +PublicGoodsVariables variables
+  +Function next
+  +_DistributionSimulationState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::DistributionSimulation" o-- "teoria_dos_jogos::classes::user.dart::User"
+"teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::DistributionSimulation" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::DistributionSimulation"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::_DistributionSimulationState" {
+  +bool start
+  +Game game
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::_DistributionSimulationState" o-- "teoria_dos_jogos::public_goods::store::game_store.dart::Game"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::distributionSimulation.dart::_DistributionSimulationState"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::instruction.dart::Instruction" {
+  +dynamic txtInstruction
+  +Alignment alignment
+  +EdgeInsetsGeometry padding
+  +Color backgroundColor
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_distribution::instruction.dart::Instruction" o-- "flutter::src::painting::alignment.dart::Alignment"
+"teoria_dos_jogos::public_goods::tutorial_distribution::instruction.dart::Instruction" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"teoria_dos_jogos::public_goods::tutorial_distribution::instruction.dart::Instruction" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::instruction.dart::Instruction"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::listWidgets.dart::InterfaceAndText" {
+  +int textIndex
+  +int interfaceIndex
+  +bool enableNext
+}
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::listWidgets.dart::TutorialLists" {
+  {static} +dynamic orderInterfaceAndText()
+  {static} +dynamic interfaces()
+  {static} +dynamic instructions()
+}
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::players_moneyBag.dart::PlayersRibRepresentation" {
+  +double value
+  +_PlayersRibRepresentationState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::players_moneyBag.dart::PlayersRibRepresentation"
+
+class "teoria_dos_jogos::public_goods::tutorial_distribution::players_moneyBag.dart::_PlayersRibRepresentationState" {
+  +List paths
+  +double targetValue
+  +double endPoint
+  +double startPoint
+  +double scale
+  +bool visible
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial_distribution::players_moneyBag.dart::_PlayersRibRepresentationState"
+
+class "teoria_dos_jogos::public_goods::tutorial_election::electionExample.dart::ElectionExample" {
+  +PublicGoodsVariables goodsVariables
+  +Function next
+  +_ElectionExampleState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_election::electionExample.dart::ElectionExample" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_election::electionExample.dart::ElectionExample"
+
+class "teoria_dos_jogos::public_goods::tutorial_election::electionExample.dart::_ElectionExampleState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial_election::electionExample.dart::_ElectionExampleState"
+
+class "teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::GameScreen" {
+  +PublicGoodsVariables variables
+  +Function next
+  +bool draggable
+  +_GameScreenState createState()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::GameScreen" o-- "teoria_dos_jogos::public_goods::classes::publicGoodsVariables.dart::PublicGoodsVariables"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::GameScreen"
+
+class "teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::_GameScreenState" {
+  +bool start
+  +Game game
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::_GameScreenState" o-- "teoria_dos_jogos::public_goods::store::game_store.dart::Game"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::tutorial_election::gameScreen.dart::_GameScreenState"
+
+class "teoria_dos_jogos::public_goods::tutorial_election::listWidgets.dart::InterfaceAndText" {
+  +int textIndex
+  +int interfaceIndex
+  +bool enableNext
+}
+
+class "teoria_dos_jogos::public_goods::tutorial_election::listWidgets.dart::TutorialLists" {
+  {static} +dynamic orderInterfaceAndText()
+  {static} +dynamic interfaces()
+  {static} +dynamic instructions()
+}
+
+class "teoria_dos_jogos::public_goods::widgets::clock.dart::Clock" {
+  +dynamic animation
+  +double scale
+  -Future _warmupAnimations()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::widgets::clock.dart::Clock"
+
+class "teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::Count" {
+  +Function animationEnds
+  +bool down
+  +bool start
+  +int inicial
+  +int diference
+  +int factor
+  +double fontsize
+  +_CountState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::Count"
+
+class "teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::_CountState" {
+  +AnimationController controller
+  +int factor
+  +int mult
+  +dynamic timerString
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::_CountState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::_CountState"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin<T>" <|-- "teoria_dos_jogos::public_goods::widgets::CountNumbers.dart::_CountState"
+
+class "teoria_dos_jogos::public_goods::widgets::election.dart::ElectionPopUp" {
+  +int pId
+  +int players
+  +int time
+  +Function computeVote
+  +Function nextRound
+  +bool tutorial
+  +Function electionTime
+  +_ElectionPopUpState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::election.dart::ElectionPopUp"
+
+class "teoria_dos_jogos::public_goods::widgets::election.dart::_ElectionPopUpState" {
+  +List<Vote> listCandidates
+  +dynamic animation
+  +bool timing
+  +int index
+  +DateTime start
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::election.dart::_ElectionPopUpState"
+
+class "teoria_dos_jogos::public_goods::widgets::election.dart::Vote" {
+  +int id
+  +bool vote
+}
+
+class "teoria_dos_jogos::public_goods::widgets::electionAnimation.dart::ElectionAnimation" {
+  +double value
+  +double fontSize
+  +dynamic onEndAnimation
+  +_ElectionAnimationState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::electionAnimation.dart::ElectionAnimation"
+
+class "teoria_dos_jogos::public_goods::widgets::electionAnimation.dart::_ElectionAnimationState" {
+  +double targetValue
+  +double endPoint
+  +double startPoint
+  +int delay
+  +void initState()
+  +dynamic startAnimation()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::electionAnimation.dart::_ElectionAnimationState"
+
+class "teoria_dos_jogos::public_goods::widgets::graphicDoubleYAxis.dart::GraphicDoubleY" {
+  +List<FlSpot> f1
+  +List<FlSpot> f2
+  +Color colors1
+  +Color colors2
+  +dynamic title1
+  +dynamic title2
+  +double maxChips
+  +double maxRounds
+  +double maxWallet
+  +double gWidth
+  +double fontSize
+  +double subtitleSquad
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::widgets::graphicDoubleYAxis.dart::GraphicDoubleY" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::widgets::graphicDoubleYAxis.dart::GraphicDoubleY"
+
+class "teoria_dos_jogos::public_goods::widgets::moneyDistribution.dart::MoneyDistribution" {
+  +int total
+  +int players
+  +int time
+  +Function distribute
+  +bool tutorial
+  +bool btnEnabled
+  +Function distributionTime
+  +_MoneyDistributionState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::moneyDistribution.dart::MoneyDistribution"
+
+class "teoria_dos_jogos::public_goods::widgets::moneyDistribution.dart::_MoneyDistributionState" {
+  +double userEarning
+  +dynamic animation
+  +bool timing
+  +bool handVisible
+  +DateTime start
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::moneyDistribution.dart::_MoneyDistributionState"
+
+class "teoria_dos_jogos::public_goods::widgets::nextAnimation.dart::NextAnimation" {
+  +double value
+  +dynamic message
+  +double fontSize
+  +dynamic onEndAnimation
+  +_NextAnimationState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::nextAnimation.dart::NextAnimation"
+
+class "teoria_dos_jogos::public_goods::widgets::nextAnimation.dart::_NextAnimationState" {
+  +double targetValue
+  +double endPoint
+  +double startPoint
+  +int delay
+  +void initState()
+  +dynamic startAnimation()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::nextAnimation.dart::_NextAnimationState"
+
+class "teoria_dos_jogos::public_goods::widgets::panel.dart::Panel" {
+  +dynamic title
+  +Widget label
+  +double fontsize
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::widgets::panel.dart::Panel" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "teoria_dos_jogos::public_goods::widgets::panel.dart::Panel"
+
+class "teoria_dos_jogos::public_goods::widgets::panelFade.dart::PanelFade" {
+  +Widget child
+  +dynamic start
+  +_PanelFadeState createState()
+}
+
+"teoria_dos_jogos::public_goods::widgets::panelFade.dart::PanelFade" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::panelFade.dart::PanelFade"
+
+class "teoria_dos_jogos::public_goods::widgets::panelFade.dart::_PanelFadeState" {
+  -AnimationController _controller
+  +Animation animation
+  +void initState()
+  +void dispose()
+  +dynamic fade()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::widgets::panelFade.dart::_PanelFadeState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"teoria_dos_jogos::public_goods::widgets::panelFade.dart::_PanelFadeState" o-- "flutter::src::animation::animation.dart::Animation"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::panelFade.dart::_PanelFadeState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin<T>" <|-- "teoria_dos_jogos::public_goods::widgets::panelFade.dart::_PanelFadeState"
+
+class "teoria_dos_jogos::public_goods::widgets::popUpWithTimer.dart::PopUpWithTimer" {
+  +dynamic message
+  +Duration duration
+  +Function callback
+  +_PopUpWithTimerState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::popUpWithTimer.dart::PopUpWithTimer"
+
+class "teoria_dos_jogos::public_goods::widgets::popUpWithTimer.dart::_PopUpWithTimerState" {
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::popUpWithTimer.dart::_PopUpWithTimerState"
+
+class "teoria_dos_jogos::public_goods::widgets::timer.dart::TimerCount" {
+  +Function animationEnds
+  +Function getTime
+  +bool start
+  +int time
+  +_TimerCountState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::timer.dart::TimerCount"
+
+class "teoria_dos_jogos::public_goods::widgets::timer.dart::_TimerCountState" {
+  +AnimationController controller
+  +dynamic timerString
+  +void initState()
+  +void dispose()
+  +dynamic getTime()
+  +Widget build()
+}
+
+"teoria_dos_jogos::public_goods::widgets::timer.dart::_TimerCountState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::timer.dart::_TimerCountState"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin<T>" <|-- "teoria_dos_jogos::public_goods::widgets::timer.dart::_TimerCountState"
+
+class "teoria_dos_jogos::public_goods::widgets::token.dart::GameToken" {
+  +int value
+  +bool isDraggable
+  +int round
+  +int maxValue
+  +List<int> list
+  +_GameTokenState createState()
+  +dynamic colors()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "teoria_dos_jogos::public_goods::widgets::token.dart::GameToken"
+
+class "teoria_dos_jogos::public_goods::widgets::token.dart::_GameTokenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "teoria_dos_jogos::public_goods::widgets::token.dart::_GameTokenState"
+
+
+@enduml
