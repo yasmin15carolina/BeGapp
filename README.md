@@ -4,5 +4,5 @@
 
 There are two options:
 
-### Prisioner's Dilemma Admin Project
-### Prisoner's Dilemma Player Project
+### Prisioner's Dilemma Admin Project (begapp_web folder)
+### Prisoner's Dilemma Player Project (teoria_dos_jogos folder)
