@@ -1,6 +1,6 @@
 
 # Game Theory - Prisoner's Dilemma
-## Licence: MIT
+## License: MIT
 
 There are two options:
 
