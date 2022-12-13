@@ -1,6 +1,6 @@
-# teoria_dos_jogos
+# Game Theory - Prisoner's Dilemma
 
-A new Flutter project.
+
 
 ## Getting Started
 
