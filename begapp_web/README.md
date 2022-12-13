@@ -1,6 +1,6 @@
-# begapp_web
+# ADMIN PROJECT
 
-A new Flutter project.
+A Flutter project.
 
 ## Getting Started
 
