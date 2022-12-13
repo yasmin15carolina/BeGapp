@@ -1,6 +1,4 @@
-# Game Theory - Prisoner's Dilemma
-
-
+# Player Module
 
 ## Getting Started
 
